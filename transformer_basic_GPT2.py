@@ -102,7 +102,33 @@ with torch.no_grad():
     x = layer_norm(x)
     print("output after last output : ", x.shape)
 
+"""
+outputs of above results :
+🔍 Tokenizer Info:
+Vocab size: 50257
+Pad token: None → ID: None
+EOS token: <|endoftext|> → ID: 50256
+inputs are {'input_ids': tensor([[1169, 3139,  286, 1216,  590,  318,  220]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1]])}
 
+🔡 Tokenized Input:
+Tokens: ['the', 'Ġcapital', 'Ġof', 'Ġfr', 'ance', 'Ġis', 'Ġ']
+Token IDs: [1169, 3139, 286, 1216, 590, 318, 220]
+embedding vectors are , :  torch.Size([1, 7, 768])
+batch size, seqlen, embeding size ,  1 7 768
+shape of new vector after linear projection :  torch.Size([1, 7, 2304])
+value of hidden size  768
+shape of Q is :  torch.Size([1, 7, 768])
+Q shape after split  torch.Size([1, 12, 7, 64])
+shape of score torch.Size([1, 12, 7, 7])
+shape of weights torch.Size([1, 12, 7, 7])
+shape of attn_output torch.Size([1, 12, 7, 64])
+final attention shape ,  torch.Size([1, 7, 768])
+Output shape after linear projection: torch.Size([1, 7, 768])
+shape after residual connection :  torch.Size([1, 7, 768])
+shape after layer norm:  torch.Size([1, 7, 768])
+shape after fFN :  torch.Size([1, 7, 768])
+output after last output :  torch.Size([1, 7, 768])
+"""
 
 # print("\n Model Architecture")
 # print(model)
